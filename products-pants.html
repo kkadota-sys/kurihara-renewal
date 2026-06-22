@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ストレッチパンツ｜株式会社クリハラ</title>
+<meta name="description" content="株式会社クリハラのストレッチパンツ通信販売ページです。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  /* ===== カラーパレット ===== */
+  :root {
+    --color-primary: #1A1A1A;
+    --color-accent: #B8965A;
+    --color-bg: #FFFFFF;
+    --color-bg-light: #F7F5F2;
+    --color-bg-dark: #1A1A1A;
+    --color-text: #1A1A1A;
+    --color-text-muted: #888888;
+    --color-border: #E5E5E5;
+    --color-white: #FFFFFF;
+    --header-height: 80px;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    font-weight: 300;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.8;
+  }
+
+  .font-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+  }
+
+  img, svg {
+    max-width: 100%;
+    display: block;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .placeholder-box {
+    background-color: var(--color-border);
+  }
+
+  /* ===== ヘッダー ===== */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: var(--header-height);
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .site-logo a {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.5rem;
+    letter-spacing: 0.14em;
+    color: var(--color-text);
+  }
+
+  /* ハンバーガーボタン */
+  .menu-toggle {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: none;
+    position: relative;
+    cursor: pointer;
+    z-index: 1100;
+  }
+
+  .menu-toggle span {
+    position: absolute;
+    left: 8px;
+    right: 8px;
+    height: 1px;
+    background-color: var(--color-text);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .menu-toggle span:nth-child(1) { top: 14px; }
+  .menu-toggle span:nth-child(2) { top: 20px; }
+  .menu-toggle span:nth-child(3) { top: 26px; }
+
+  .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+  }
+  .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+  }
+
+  /* ===== ナビゲーション（モバイル：全画面オーバーレイ） ===== */
+  .main-nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--color-white);
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    visibility: hidden;
+  }
+
+  .main-nav.is-open {
+    transform: translateX(0);
+    visibility: visible;
+  }
+
+  .main-nav > ul {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .main-nav > ul > li {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .main-nav > ul > li > a {
+    display: block;
+    padding: 18px 24px;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .has-submenu > a {
+    position: relative;
+  }
+
+  .has-submenu > a::after {
+    content: "+";
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+  }
+
+  .has-submenu.is-open > a::after {
+    content: "−";
+  }
+
+  .submenu {
+    max-height: 0;
+    overflow: hidden;
+    background-color: var(--color-bg-light);
+    transition: max-height 0.3s ease;
+  }
+
+  .has-submenu.is-open .submenu {
+    max-height: 400px;
+  }
+
+  .submenu li a {
+    display: block;
+    padding: 12px 24px 12px 40px;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+  }
+
+  /* ===== パンくずリスト ===== */
+  .breadcrumb-wrap {
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    padding: 14px 0;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .breadcrumb a {
+    color: var(--color-text-muted);
+    transition: color 0.3s ease;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-accent);
+  }
+
+  .breadcrumb .current {
+    color: var(--color-text);
+  }
+
+  /* ===== ページヘッダー ===== */
+  .page-header {
+    height: 40vh;
+    min-height: 240px;
+    background-color: var(--color-bg-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .page-header-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 6vw, 3.2rem);
+    letter-spacing: 0.1em;
+    color: var(--color-text);
+  }
+
+  .page-header-ja {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+  }
+
+  /* ===== カテゴリタブ ===== */
+  .category-nav {
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .category-tabs {
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+  }
+
+  .category-tab {
+    flex-shrink: 0;
+    padding: 20px 22px;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .category-tab:hover {
+    color: var(--color-text);
+  }
+
+  .category-tab.is-active {
+    color: var(--color-text);
+    border-bottom-color: var(--color-accent);
+  }
+
+  /* ===== 商品グリッド ===== */
+  .product-section {
+    background-color: var(--color-bg);
+    padding: 64px 0;
+  }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 20px;
+  }
+
+  .product-thumb-wrap {
+    overflow: hidden;
+  }
+
+  .product-thumb {
+    aspect-ratio: 3 / 4;
+    background-color: var(--color-border);
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover .product-thumb {
+    transform: scale(1.03);
+  }
+
+  .product-info {
+    padding-top: 16px;
+  }
+
+  .product-name {
+    font-size: 0.85rem;
+    font-weight: 300;
+    margin-bottom: 6px;
+    color: var(--color-text);
+  }
+
+  .product-code {
+    font-size: 0.7rem;
+    color: var(--color-text-muted);
+    margin-bottom: 10px;
+  }
+
+  .product-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--color-accent);
+    margin-bottom: 12px;
+  }
+
+  .detail-link {
+    display: inline-block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    border-bottom: 1px solid var(--color-text);
+    padding-bottom: 2px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .detail-link:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+
+  /* ===== ご利用ガイドバー ===== */
+  .guide-bar {
+    background-color: var(--color-bg-light);
+    padding: 48px 0;
+  }
+
+  .guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px 12px;
+  }
+
+  .guide-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    padding: 8px 4px;
+  }
+
+  .guide-icon {
+    width: 28px;
+    height: 28px;
+  }
+
+  .guide-icon svg {
+    width: 28px;
+    height: 28px;
+    opacity: 0.75;
+    transition: opacity 0.3s ease;
+  }
+
+  .guide-item:hover .guide-icon svg {
+    opacity: 1;
+  }
+
+  .guide-text {
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    color: var(--color-text);
+    transition: color 0.3s ease;
+  }
+
+  .guide-item:hover .guide-text {
+    color: var(--color-accent);
+  }
+
+  @media (min-width: 768px) {
+    .guide-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
+  /* ===== 連絡先バー ===== */
+  .contact-bar {
+    background-color: #fff;
+    text-align: center;
+    padding: 64px 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .contact-bar-tel {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    color: var(--color-text);
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .contact-bar-tel:hover {
+    color: var(--color-accent);
+  }
+
+  .contact-bar-sub {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    margin-bottom: 28px;
+  }
+
+  .btn-outline-gold {
+    display: inline-block;
+    padding: 14px 40px;
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn-outline-gold:hover {
+    background-color: var(--color-accent);
+    color: #fff;
+  }
+
+  /* ===== フッター ===== */
+  .site-footer {
+    background-color: var(--color-bg-dark);
+    color: #fff;
+    padding: 72px 0 28px;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 1.8rem;
+    letter-spacing: 0.15em;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px 28px;
+    margin-bottom: 40px;
+  }
+
+  .footer-nav a {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    color: #fff;
+    opacity: 0.85;
+    text-transform: uppercase;
+    transition: opacity 0.3s ease, color 0.3s ease;
+  }
+
+  .footer-nav a:hover {
+    opacity: 1;
+    color: var(--color-accent);
+  }
+
+  .footer-bottom {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 24px;
+  }
+
+  .footer-bottom p {
+    margin-bottom: 6px;
+  }
+
+  /* ===== デスクトップ表示（768px以上） ===== */
+  @media (min-width: 768px) {
+    .menu-toggle {
+      display: none;
+    }
+
+    .main-nav {
+      position: static;
+      transform: none;
+      visibility: visible;
+      height: auto;
+      overflow: visible;
+      background: none;
+    }
+
+    .main-nav > ul {
+      display: flex;
+      border-top: none;
+    }
+
+    .main-nav > ul > li {
+      border-bottom: none;
+      position: relative;
+    }
+
+    .main-nav > ul > li > a {
+      padding: 8px 18px;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      position: relative;
+    }
+
+    .main-nav > ul > li > a::after {
+      content: "";
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 2px;
+      height: 1px;
+      background-color: var(--color-accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .main-nav > ul > li > a:hover::after {
+      transform: scaleX(1);
+    }
+
+    .has-submenu > a::after {
+      display: none;
+    }
+
+    .submenu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 220px;
+      max-height: none;
+      overflow: visible;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      border: 1px solid var(--color-border);
+    }
+
+    .has-submenu:hover .submenu,
+    .has-submenu.is-open .submenu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .product-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px 32px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <p class="site-logo">
+      <a href="index.html">KURIHARA</a>
+    </p>
+
+    <button class="menu-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="main-nav">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" id="main-nav">
+      <ul>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="about-first.html">初めての方へ</a></li>
+        <li><a href="products-lineup.html">商品ラインナップ</a></li>
+
+        <li class="has-submenu">
+          <a href="#">通信販売</a>
+          <ul class="submenu">
+            <li><a href="products-pants.html">ストレッチパンツ</a></li>
+            <li><a href="products-skirt.html">スカート</a></li>
+            <li><a href="products-spats.html">スパッツ（レギンス）</a></li>
+            <li><a href="products-outdoor.html">アウトドア・ナビゲーションパンツ</a></li>
+          </ul>
+        </li>
+
+        <li class="has-submenu">
+          <a href="#">インフォメーション</a>
+          <ul class="submenu">
+            <li><a href="about-company.html">会社概要・地図</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- パンくずリスト -->
+  <div class="breadcrumb-wrap">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="index.html">HOME</a>
+        <span>›</span>
+        <span>通信販売</span>
+        <span>›</span>
+        <span class="current">ストレッチパンツ</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- ページヘッダー -->
+  <section class="page-header">
+    <div class="container">
+      <p class="page-header-en font-en">STRETCH PANTS</p>
+      <p class="page-header-ja">ストレッチパンツ</p>
+    </div>
+  </section>
+
+  <!-- カテゴリタブ -->
+  <nav class="category-nav">
+    <div class="container">
+      <div class="category-tabs">
+        <a class="category-tab is-active" href="products-pants.html">ストレッチパンツ</a>
+        <a class="category-tab" href="products-skirt.html">スカート</a>
+        <a class="category-tab" href="products-spats.html">スパッツ（レギンス）</a>
+        <a class="category-tab" href="products-outdoor.html">アウトドア・ナビパンツ</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 商品グリッド -->
+  <section class="product-section">
+    <div class="container">
+      <div class="product-grid">
+
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <div class="product-thumb placeholder-box" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80'); background-size: cover; background-position: center top;"></div>
+          </div>
+          <div class="product-info">
+            <p class="product-name">ブーツカットパンツ</p>
+            <p class="product-code font-en">No. 51551</p>
+            <p class="product-price font-en">1,270円</p>
+            <a class="detail-link" href="https://www.kk-kurihara.net/cgi-bin/kurihara/siteup.cgi?&category=3&page=1&view=&cart=detail&no=1" target="_blank" rel="noopener">詳細・注文 →</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <div class="product-thumb placeholder-box" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1594938298603-c8148c4b4468?w=600&q=80'); background-size: cover; background-position: center top;"></div>
+          </div>
+          <div class="product-info">
+            <p class="product-name">ストレートパンツ</p>
+            <p class="product-code font-en">No. 51549</p>
+            <p class="product-price font-en">1,270円</p>
+            <a class="detail-link" href="https://www.kk-kurihara.net/cgi-bin/kurihara/siteup.cgi?&category=3&page=1&view=&cart=detail&no=6" target="_blank" rel="noopener">詳細・注文 →</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <div class="product-thumb placeholder-box" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1506629082955-511b1aa562c8?w=600&q=80'); background-size: cover; background-position: center top;"></div>
+          </div>
+          <div class="product-info">
+            <p class="product-name">ヨガパンツ</p>
+            <p class="product-code font-en">No. 51311</p>
+            <p class="product-price font-en">1,270円</p>
+            <a class="detail-link" href="https://www.kk-kurihara.net/cgi-bin/kurihara/siteup.cgi?&category=3&page=1&view=&cart=detail&no=7" target="_blank" rel="noopener">詳細・注文 →</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <div class="product-thumb placeholder-box" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1552902865-b72c031ac5ea?w=600&q=80'); background-size: cover; background-position: center top;"></div>
+          </div>
+          <div class="product-info">
+            <p class="product-name">ライン入りヨガストレッチパンツ</p>
+            <p class="product-code font-en">No. 50891</p>
+            <p class="product-price font-en">1,270円</p>
+            <a class="detail-link" href="https://www.kk-kurihara.net/cgi-bin/kurihara/siteup.cgi?&category=3&page=1&view=&cart=detail&no=8" target="_blank" rel="noopener">詳細・注文 →</a>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-thumb-wrap">
+            <div class="product-thumb placeholder-box" aria-hidden="true" style="background-image: url('https://images.unsplash.com/photo-1571945153237-4929e783af4a?w=600&q=80'); background-size: cover; background-position: center top;"></div>
+          </div>
+          <div class="product-info">
+            <p class="product-name">ニューカノコヨガパンツ</p>
+            <p class="product-code font-en">No. 50885</p>
+            <p class="product-price font-en">1,270円</p>
+            <a class="detail-link" href="https://www.kk-kurihara.net/cgi-bin/kurihara/siteup.cgi?&category=3&page=1&view=&cart=detail&no=9" target="_blank" rel="noopener">詳細・注文 →</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ご利用ガイドバー -->
+<section class="guide-bar">
+  <div class="container">
+    <div class="guide-grid">
+      <a class="guide-item" href="about-first.html">
+        <span class="guide-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="4" y="16" width="22" height="14" rx="1" stroke="#B8965A" stroke-width="1.5"/>
+            <path d="M26 20h7l7 6v4h-14" stroke="#B8965A" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="14" cy="33" r="3" stroke="#B8965A" stroke-width="1.5"/>
+            <circle cx="34" cy="33" r="3" stroke="#B8965A" stroke-width="1.5"/>
+            <path d="M4 30v-3" stroke="#B8965A" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="guide-text">送料無料<br>（5,000円以上）</span>
+      </a>
+      <a class="guide-item" href="about-first.html">
+        <span class="guide-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="16" width="36" height="26" stroke="#B8965A" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M6 16 24 6 42 16" stroke="#B8965A" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M24 6v10" stroke="#B8965A" stroke-width="1.5"/>
+          </svg>
+        </span>
+        <span class="guide-text">全国配送</span>
+      </a>
+      <a class="guide-item" href="about-first.html">
+        <span class="guide-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="16" stroke="#B8965A" stroke-width="1.5"/>
+            <path d="M24 16v16M18 21h12M18 27h12" stroke="#B8965A" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="guide-text">低価格卸売</span>
+      </a>
+      <a class="guide-item" href="contact.html">
+        <span class="guide-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 7h6l2 6-4 4c2 5 6 9 11 11l4-4 6 2v6c0 2-2 4-4 4C19 36 11 28 11 12c0-2 2-5 5-5Z" stroke="#B8965A" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="guide-text">電話注文OK</span>
+      </a>
+      <a class="guide-item" href="about-first.html">
+        <span class="guide-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 40V22l10 6v-6l10 6V16h4v24z" stroke="#B8965A" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M6 40h32" stroke="#B8965A" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="guide-text">自社仕入れ</span>
+      </a>
+      <a class="guide-item" href="contact.html">
+        <span class="guide-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="8" width="24" height="32" rx="2" stroke="#B8965A" stroke-width="1.5"/>
+            <path d="M18 8v-2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2" stroke="#B8965A" stroke-width="1.5"/>
+            <path d="M18 20h12M18 26h12M18 32h8" stroke="#B8965A" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="guide-text">お問い合わせ</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 連絡先バー -->
+<section class="contact-bar">
+  <div class="container">
+    <a class="contact-bar-tel font-en" href="tel:0877865858">TEL 0877-86-5858</a>
+    <p class="contact-bar-sub">お電話でのご注文・お問い合わせも承っております</p>
+    <a class="btn-outline-gold" href="contact.html">お問い合わせフォームへ</a>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p class="footer-logo font-en">KURIHARA</p>
+
+    <nav class="footer-nav">
+      <a href="index.html">HOME</a>
+      <a href="about-first.html">初めての方へ</a>
+      <a href="products-lineup.html">商品ラインナップ</a>
+      <a href="products-pants.html">ストレッチパンツ</a>
+      <a href="products-skirt.html">スカート</a>
+      <a href="products-spats.html">スパッツ（レギンス）</a>
+      <a href="products-outdoor.html">アウトドア・ナビゲーションパンツ</a>
+      <a href="about-company.html">会社概要・地図</a>
+      <a href="contact.html">お問い合わせ</a>
+    </nav>
+
+    <div class="footer-bottom">
+      <p>株式会社クリハラ　香川県丸亀市綾歌町富熊77-1</p>
+      <p class="font-en">TEL：0877-86-5858</p>
+      <p>&copy; Kurihara Co., Ltd.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var menuToggle = document.querySelector('.menu-toggle');
+    var mainNav = document.querySelector('.main-nav');
+
+    menuToggle.addEventListener('click', function () {
+      var isOpen = mainNav.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    document.querySelectorAll('.has-submenu > a').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (window.matchMedia('(max-width: 767px)').matches) {
+          e.preventDefault();
+          link.parentElement.classList.toggle('is-open');
+        }
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
